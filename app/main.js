@@ -13,7 +13,7 @@ const server = net.createServer((connection) => {
         console.log(parts)
         const type = parts[0][0];   //check if is array, string or bulk string
         console.log(type)
-        const argument = parts[3];
+        const argument = parts[2];
         console.log(argument)
         let response;
         if (type==="*" && argument==="PING") {
