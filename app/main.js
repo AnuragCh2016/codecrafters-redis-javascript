@@ -16,7 +16,7 @@ const server = net.createServer((connection) => {
         const argument = parts[2];
         console.log(argument)
         let response;
-        if (type==="*" && argument==="PING") {
+        if (type==="*" && argument==="ping") {
             response = '+PONG\r\n';
         } else {
             response = '-ERR unknown command\r\n';
