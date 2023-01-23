@@ -8,19 +8,20 @@ const server = net.createServer((connection) => {
     connection.on("data", (data) => {
 
         const commands = data.toString().trim();
-        console.log(commands)
-        const parts = commands.split(" ");
-        console.log(parts)
-        const command = parts[0];
-        console.log(command)
+        // console.log(commands)
+        const parts = commands.split("\r\n");
+        // console.log(parts)
+        const type = parts[0][0];   //check if is array, string or bulk string
+        // console.log(type)
+        const argument = parts[3];
+        // console.log(argument)
         let response;
-        if (command.toLowerCase() === "ping") {
+        if (type==="*" && argument==="PING") {
             response = '+PONG\r\n';
         } else {
             response = '-ERR unknown command\r\n';
         }
         connection.write(response);
-
     });
 });
 
