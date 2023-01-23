@@ -10,10 +10,11 @@ const server = net.createServer((connection) => {
         const commands = data.toString().trim();
         const parts = commands.split(" ");
         const command = parts[0];
+        let response;
         if (command.toLowerCase() === "ping") {
-            const response = '+PONG\r\n';
+            response = '+PONG\r\n';
         } else {
-            const response = '-ERR unknown command\r\n';
+            response = '-ERR unknown command\r\n';
         }
         connection.write(response);
 
