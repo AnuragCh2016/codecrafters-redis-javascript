@@ -8,8 +8,11 @@ const server = net.createServer((connection) => {
     connection.on("data", (data) => {
 
         const commands = data.toString().trim();
+        console.log(commands)
         const parts = commands.split(" ");
+        console.log(parts)
         const command = parts[0];
+        console.log(command)
         let response;
         if (command.toLowerCase() === "ping") {
             response = '+PONG\r\n';
