@@ -6,22 +6,20 @@ console.log("Logs from your program will appear here!");
 // Uncomment this block to pass the first stage
 const server = net.createServer((connection) => {
     connection.on("data", (data) => {
-
         const commands = data.toString().trim();
-        console.log(commands)
+        // console.log(commands)
         const parts = commands.split("\r\n");
-        console.log(parts)
+        // console.log(parts)
         const type = parts[0][0];   //check if is array, string or bulk string
-        console.log(type)
-        const argument = parts[2];
-        console.log(argument)
-        let response;
-        if (type==="*" && argument==="ping") {
-            response = '+PONG\r\n';
-        } else {
-            response = '-ERR unknown command\r\n';
+        // console.log(type)
+        if(type==="*"){
+            parts.forEach((part) => {
+                if(part==="ping"){
+                    response = '+PONG\r\n';
+                    connection.write(response);
+                }
+            });
         }
-        connection.write(response);
     });
 });
 
